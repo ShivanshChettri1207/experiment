@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Congratulations!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      background-size: 200% 200%;
+      animation: gradientBG 8s ease infinite;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 600px;
+      animation: fadeInUp 1.2s ease;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      animation: fadeText 3s ease-in-out infinite;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #333;
+      margin: 1rem 0 2rem;
+      line-height: 1.5;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #3e8e41;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeText {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.6);
+      animation: sparkle 3s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.5); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="congratsName">Congratulations!</h1>
+    <p>
+      Your hard work and professionalism shine bright. This is more than an achievement — it's a milestone.<br>
+      <strong>Shivansh Chettri is proud of you. He loves you. ❤️</strong>
+    </p>
+    <a href="gallery.html" class="btn">Continue to Gallery →</a>
+  </div>
+
+  <script>
+    const name = localStorage.getItem('username') || "Himani";
+    document.getElementById('congratsName').textContent = `Congratulations, ${name}!`;
+    localStorage.removeItem('username');
+
+    // Sparkle effect
+    for (let i = 0; i < 40; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.top = Math.random() * 100 + 'vh';
+      sparkle.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(sparkle);
+    }
+  </script>
+</body>
+</html>

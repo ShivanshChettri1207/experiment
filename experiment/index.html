@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enter Your Name</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #ee9ca7, #ffdde1, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(15px);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+      animation: fadeIn 2s ease;
+    }
+
+    input, button {
+      padding: 12px;
+      width: 80%;
+      margin-top: 1rem;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    input {
+      background: #f1f1f1;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3e8e41;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .shape {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgb(135, 190, 32);
+      border-radius: 50%;
+      animation: float 10s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Enter Your Name</h1>
+    <input type="text" id="nameInput" placeholder="Your name" />
+    <button onclick="goToCongrats()">Celebrate</button>
+  </div>
+
+  <script>
+    function goToCongrats() {
+      const name = document.getElementById('nameInput').value.trim();
+      if (name) {
+        localStorage.setItem('username', name);
+        window.location.href = 'congrats.html';
+      } else {
+        alert("Please enter your name.");
+      }
+    }
+
+    // Floating bubbles
+    for (let i = 0; i < 30; i++) {
+      let shape = document.createElement('div');
+      shape.classList.add('shape');
+      shape.style.left = Math.random() * 100 + 'vw';
+      shape.style.top = Math.random() * 100 + 'vh';
+      shape.style.animationDelay = (Math.random() * 5) + 's';
+      document.body.appendChild(shape);
+    }
+  </script>
+</body>
+</html>
